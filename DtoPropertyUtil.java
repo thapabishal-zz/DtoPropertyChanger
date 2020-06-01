@@ -34,6 +34,17 @@ public class DtoPropertyUtil {
             setValue(dto, propertiesNames);
     }
 
+    /**
+     * This method sets the default value to the property of the dto
+     *
+     * @param dtoList
+     */
+    public static void setDefaultValue(List<? extends Serializable> dtoList, String... propertiesNames) {
+        if (Optional.ofNullable(dtoList).isPresent() && Optional.ofNullable(propertiesNames).isPresent()) {
+            dtoList.forEach( dto -> setDefaultValue(dto, propertiesNames) );
+        }
+    }
+
     private static void setValue(Serializable dto, String... propertiesNames) {
         Arrays.asList(propertiesNames).stream().forEach(fieldName -> {
             try {
